@@ -1,0 +1,49 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "configurations": [
+    {
+      "type": "debugpy",
+      "request": "launch",
+      "name": "Launch FastAPI Backend",
+      "program": "${workspaceFolder}/backend/app/${input:backendEntryPoint}",
+      "args": [
+        "--reload"
+      ],
+      "envFile": "${workspaceFolder}/backend/.env"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Next.js Frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "cwd": "${workspaceFolder}/frontend",
+      "port": 9229
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "backendEntryPoint",
+      "description": "Select the entry point for the backend",
+      "options": [
+        "main.py",
+        "database.py",
+        "models.py",
+        "routes.py"
+      ]
+    }
+  ]
+}
