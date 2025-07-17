@@ -1,9 +1,14 @@
 from pydantic import BaseModel
+from typing import Optional
 
 # Weather data model
 class Weather(BaseModel):
     city: str
-    temperature: float
+    temperature: str
+    description: str
     condition: str
-    humidity: int
-    wind_speed: float
+    humidity: str
+    windSpeed: str
+    iconCode: str
+    feelsLike: Optional[str] = None
+    visibility: Optional[str] = None 

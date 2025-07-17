@@ -11,18 +11,20 @@ MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("MONGO_URI is not set in the .env file")
 
+print(f"MongoDB URI: {MONGO_URI}")
+
 # Function to initialize and return the database connection
 def get_database():
     try:
-        # Create a MongoDB client
+        # Simple local connection (no SSL needed)
         client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
-
+        
         # Connect to a specific database
-        db = client["weather_database"]        
-        print("Successfully connected to MongoDB")
+        db = client["weather_database"]
+        print("Database connection created successfully")
         return db
     except Exception as e:
-        print(f"Error connecting to MongoDB: {e}")
+        print(f"Error creating database connection: {e}")
         return None
 
 # Export the get_database function for use in other files
